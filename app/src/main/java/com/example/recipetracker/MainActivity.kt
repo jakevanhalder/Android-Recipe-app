@@ -21,11 +21,16 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -34,6 +39,16 @@ import com.example.recipetracker.ui.theme.RecipeTrackerTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val fontFamily = FontFamily(
+            Font(R.font.josefinslab_thin, FontWeight.Thin),
+            Font(R.font.josefinslab_extralight, FontWeight.Thin),
+            Font(R.font.josefinslab_light, FontWeight.Thin),
+            Font(R.font.josefinslab_regular, FontWeight.Thin),
+            Font(R.font.josefinslab_medium, FontWeight.Thin),
+            Font(R.font.josefinslab_semibold, FontWeight.Thin),
+            Font(R.font.josefinslab_bold, FontWeight.Thin)
+        )
+
         setContent {
             RecipeTrackerTheme {
                 // A surface container using the 'background' color from the theme
@@ -45,7 +60,7 @@ class MainActivity : ComponentActivity() {
                     val description = "Burger steak recipe"
                     val title = "Burger steak"
                     
-                    RecipeCard(painter = painter, contentDescription = description, title = title)
+                    RecipeCard(painter = painter, contentDescription = description, title = title, fontFamily = fontFamily)
                 }
             }
         }
@@ -58,10 +73,11 @@ fun RecipeCard(
     painter: Painter,
     contentDescription: String,
     title: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    fontFamily: FontFamily
 ){
     Card (
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifier.fillMaxWidth().padding(7.dp),
         shape = RoundedCornerShape(15.dp),
         elevation = CardDefaults.cardElevation(
             defaultElevation = 10.dp
@@ -73,11 +89,19 @@ fun RecipeCard(
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.fillMaxSize()
             )
+            Box(modifier = Modifier
+                .fillMaxSize()
+                .background(Brush.verticalGradient(colors = listOf(Color.Transparent, Color.Black), startY = 300f))
+            ){
+
+            }
             Text(text = title,
-                style = TextStyle(color = Color.White, fontSize = 16.sp),
+                style = TextStyle(color = Color.White, fontSize = 20.sp),
+                fontFamily = fontFamily,
+                fontWeight = FontWeight.Bold,
+                textDecoration = TextDecoration.Underline,
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
-                    .background(color = Color.White)
                     .padding(5.dp)
             )
         }
