@@ -15,10 +15,18 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountBox
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -76,14 +84,14 @@ class MainActivity : ComponentActivity() {
                     val painter = painterResource(id = R.drawable.hamburger_steak_4)
                     val description = "Burger steak recipe"
                     val title = "Burger steak"
-                    val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
+                    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
 
                     /*
                     * This scaffold is used to deal with the top app bar
                     * */
                     Scaffold(modifier = Modifier
-                            .fillMaxSize()
-                            .nestedScroll(scrollBehavior.nestedScrollConnection),
+                        .fillMaxSize()
+                        .nestedScroll(scrollBehavior.nestedScrollConnection),
                         topBar = {
                             TopAppBar(
                                 title = {
@@ -110,6 +118,30 @@ class MainActivity : ComponentActivity() {
                                 },
                                 scrollBehavior = scrollBehavior
                             )
+                        },
+                        bottomBar = {
+                            BottomAppBar(
+                                actions = {
+                                    IconButton(onClick = { /*TODO*/ }) {
+                                        Icon(
+                                            imageVector = Icons.Default.Home,
+                                            contentDescription = "Recipes screen"
+                                        )
+                                    }
+                                    IconButton(onClick = { /*TODO*/ }) {
+                                        Icon(
+                                            imageVector = Icons.Default.AddCircle,
+                                            contentDescription = "Add recipe screen"
+                                        )
+                                    }
+                                    IconButton(onClick = { /*TODO*/ }) {
+                                        Icon(
+                                            imageVector = Icons.Default.Person,
+                                            contentDescription = "Profile screen"
+                                        )
+                                    }
+                                }
+                            )
                         }
                     ) { values ->
                         LazyColumn(
@@ -128,12 +160,6 @@ class MainActivity : ComponentActivity() {
                         }
 
                     }
-                    /*RecipeCard(
-                        painter = painter,
-                        contentDescription = description,
-                        title = title,
-                        fontFamily = fontFamily
-                    )*/
                 }
             }
         }
