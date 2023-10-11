@@ -7,23 +7,39 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -36,6 +52,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.recipetracker.ui.theme.RecipeTrackerTheme
 
+@OptIn(ExperimentalMaterial3Api::class)
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,15 +76,75 @@ class MainActivity : ComponentActivity() {
                     val painter = painterResource(id = R.drawable.hamburger_steak_4)
                     val description = "Burger steak recipe"
                     val title = "Burger steak"
-                    
-                    RecipeCard(painter = painter, contentDescription = description, title = title, fontFamily = fontFamily)
+                    val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
+
+                    /*
+                    * This scaffold is used to deal with the top app bar
+                    * */
+                    Scaffold(modifier = Modifier
+                            .fillMaxSize()
+                            .nestedScroll(scrollBehavior.nestedScrollConnection),
+                        topBar = {
+                            TopAppBar(
+                                title = {
+                                    Text(text = "My Recipes",
+                                        fontFamily = fontFamily,
+                                        fontWeight = FontWeight.Bold
+                                        )
+                                },
+                                navigationIcon = {
+                                    IconButton(onClick = { /*TODO*/ }) {
+                                        Icon(
+                                            imageVector = Icons.Default.Menu,
+                                            contentDescription = "Menu"
+                                        )
+                                    }
+                                },
+                                actions = {
+                                    IconButton(onClick = { /*TODO*/ }) {
+                                        Icon(
+                                            imageVector = Icons.Default.Search,
+                                            contentDescription = "Search for recipes"
+                                        )
+                                    }
+                                },
+                                scrollBehavior = scrollBehavior
+                            )
+                        }
+                    ) { values ->
+                        LazyColumn(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(values)
+                        ){
+                            items(100){
+                                RecipeCard(
+                                    painter = painter,
+                                    contentDescription = description,
+                                    title = title,
+                                    fontFamily = fontFamily
+                                )
+                            }
+                        }
+
+                    }
+                    /*RecipeCard(
+                        painter = painter,
+                        contentDescription = description,
+                        title = title,
+                        fontFamily = fontFamily
+                    )*/
                 }
             }
         }
     }
 }
 
-
+/*
+* Name: RecipeCard()
+* Description: Creates a image card for recipes that are added to the app
+* Status: Not done. Haven't integrated the user creating these yet
+* */
 @Composable
 fun RecipeCard(
     painter: Painter,
@@ -77,7 +154,9 @@ fun RecipeCard(
     fontFamily: FontFamily
 ){
     Card (
-        modifier = modifier.fillMaxWidth().padding(7.dp),
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(7.dp),
         shape = RoundedCornerShape(15.dp),
         elevation = CardDefaults.cardElevation(
             defaultElevation = 10.dp
@@ -91,7 +170,12 @@ fun RecipeCard(
             )
             Box(modifier = Modifier
                 .fillMaxSize()
-                .background(Brush.verticalGradient(colors = listOf(Color.Transparent, Color.Black), startY = 300f))
+                .background(
+                    Brush.verticalGradient(
+                        colors = listOf(Color.Transparent, Color.Black),
+                        startY = 300f
+                    )
+                )
             ){
 
             }
