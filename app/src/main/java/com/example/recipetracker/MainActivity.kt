@@ -1,5 +1,6 @@
 package com.example.recipetracker
 
+import android.media.Image
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -26,6 +27,10 @@ import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.outlined.Add
+import androidx.compose.material.icons.outlined.AddCircle
+import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -42,6 +47,9 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -59,7 +67,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.recipetracker.ui.theme.RecipeTrackerTheme
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.graphics.vector.ImageVector
 
+data class BottomNavigationItem(
+    val title: String,
+    val selectedIcon: ImageVector,
+    val unselectedIcon: ImageVector
+)
 @OptIn(ExperimentalMaterial3Api::class)
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,6 +93,11 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             RecipeTrackerTheme {
+
+                var selectedItemIndex by rememberSaveable {
+                    mutableStateOf(0)
+                }
+
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -85,9 +107,26 @@ class MainActivity : ComponentActivity() {
                     val description = "Burger steak recipe"
                     val title = "Burger steak"
                     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
+                    val items = listOf(
+                        BottomNavigationItem(
+                            title = "Home",
+                            selectedIcon = Icons.Filled.Home,
+                            unselectedIcon = Icons.Outlined.Home
+                        ),
+                        BottomNavigationItem(
+                            title = "Add recipe",
+                            selectedIcon = Icons.Filled.Add,
+                            unselectedIcon = Icons.Outlined.Add
+                        ),
+                        BottomNavigationItem(
+                            title = "Profile",
+                            selectedIcon = Icons.Filled.Person,
+                            unselectedIcon = Icons.Outlined.Person
+                        )
+                    )
 
                     /*
-                    * This scaffold is used to deal with the top app bar
+                    * This scaffold is used to deal with the top app bar and the bottom navigational buttons
                     * */
                     Scaffold(modifier = Modifier
                         .fillMaxSize()
@@ -119,29 +158,30 @@ class MainActivity : ComponentActivity() {
                                 scrollBehavior = scrollBehavior
                             )
                         },
+                        // Bottom navigation system
                         bottomBar = {
-                            BottomAppBar(
-                                actions = {
-                                    IconButton(onClick = { /*TODO*/ }) {
-                                        Icon(
-                                            imageVector = Icons.Default.Home,
-                                            contentDescription = "Recipes screen"
-                                        )
-                                    }
-                                    IconButton(onClick = { /*TODO*/ }) {
-                                        Icon(
-                                            imageVector = Icons.Default.AddCircle,
-                                            contentDescription = "Add recipe screen"
-                                        )
-                                    }
-                                    IconButton(onClick = { /*TODO*/ }) {
-                                        Icon(
-                                            imageVector = Icons.Default.Person,
-                                            contentDescription = "Profile screen"
-                                        )
-                                    }
+                            NavigationBar {
+                                items.forEachIndexed { index, item ->
+                                    NavigationBarItem(
+                                        selected = selectedItemIndex == index,
+                                        onClick = {
+                                                  selectedItemIndex = index
+                                            // navController.navigate(item.title) look this up
+                                        },
+                                        label = {
+                                          Text(text = item.title)
+                                        },
+                                        icon = {
+                                            Icon(
+                                                imageVector = if (index == selectedItemIndex){
+                                                    item.selectedIcon
+                                                } else item.unselectedIcon,
+                                                contentDescription = item.title
+                                            )
+                                        }
+                                    )
                                 }
-                            )
+                            }
                         }
                     ) { values ->
                         LazyColumn(
@@ -218,3 +258,11 @@ fun RecipeCard(
     }
 }
 
+@Composable
+fun NavigationBar(
+    modifier: Modifier = Modifier,
+    content: @Composable RowScope.() -> Unit
+) : Unit
+{
+
+}
