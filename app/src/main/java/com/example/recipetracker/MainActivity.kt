@@ -115,8 +115,8 @@ class MainActivity : ComponentActivity() {
                         ),
                         BottomNavigationItem(
                             title = "Add recipe",
-                            selectedIcon = Icons.Filled.Add,
-                            unselectedIcon = Icons.Outlined.Add
+                            selectedIcon = Icons.Filled.AddCircle,
+                            unselectedIcon = Icons.Outlined.AddCircle
                         ),
                         BottomNavigationItem(
                             title = "Profile",
