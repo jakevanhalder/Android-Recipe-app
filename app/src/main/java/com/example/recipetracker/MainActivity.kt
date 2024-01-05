@@ -94,7 +94,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             RecipeTrackerTheme {
 
-
+                Nav()
 
                 var selectedItemIndex by rememberSaveable {
                     mutableStateOf(0)
