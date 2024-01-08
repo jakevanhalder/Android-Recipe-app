@@ -16,20 +16,11 @@ import androidx.navigation.NavHostController
 import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
 @Composable
-fun HomeScreen(navController: NavHostController) {
-    Column(modifier = Modifier.fillMaxSize(),
-    verticalArrangement = Arrangement.Center,
-    horizontalAlignment = Alignment.CenterHorizontally
-    ){
-        Text(text = "HomeScreen", fontSize = 64.sp)
-        Spacer(modifier = Modifier.height(65.dp))
-        Button(onClick = {
-            navController.navigate("RecipeScreen"){
-                popUpTo("HomeScreen"){inclusive = true}
-            }
-        }) {
-            Text(text = "go to recipe screen")
-        }
-    }
+fun HomeScreen(
+    onClickHomeButton: () -> Unit = {},
+    onClickAddRecipeButton: () -> Unit = {},
+    onClickProfileButton: (String) -> Unit = {}
+) {
+
 
 }

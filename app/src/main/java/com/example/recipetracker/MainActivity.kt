@@ -96,9 +96,7 @@ class MainActivity : ComponentActivity() {
 
                 Nav()
 
-                var selectedItemIndex by rememberSaveable {
-                    mutableStateOf(0)
-                }
+
 
                 // A surface container using the 'background' color from the theme
                 Surface(
