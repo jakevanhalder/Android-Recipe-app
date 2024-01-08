@@ -35,4 +35,4 @@ object Profile : RecipeTrackerDestination {
 }
 
 // Screens to be displayed in the bottom navigation of the Recipe Tracker app
-val recipeTrackerBottomNavigation = listOf(Home, AddRecipe, Profile)
+val recipeTrackerScreens = listOf(Home, AddRecipe, Profile)
