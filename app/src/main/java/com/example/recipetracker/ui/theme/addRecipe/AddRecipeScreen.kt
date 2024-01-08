@@ -15,18 +15,9 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 
 @Composable
-fun AddRecipeScreen(navController: NavHostController) {
-    Column(modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ){
-        Text(text = "RecipeScreen", fontSize = 64.sp)
-        Spacer(modifier = Modifier.height(65.dp))
-        Button(onClick = {
-            navController.navigate("ProfileScreen")
-        }) {
-            Text(text = "go to profile screen")
-        }
-    }
+fun AddRecipeScreen(
+
+) {
+
 
 }

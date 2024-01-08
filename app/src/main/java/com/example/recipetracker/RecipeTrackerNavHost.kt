@@ -38,7 +38,7 @@ fun RecipeTrackerNavHost(
 
         }
     }
-}
+
 
 fun NavHostController.navigateSingleTopTo(route: String) =
     this.navigate(route) {
