@@ -15,9 +15,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 
 @Composable
-fun AddRecipeScreen(
-
-) {
+fun AddRecipeScreen() {
 
 
 }

@@ -23,15 +23,13 @@ fun RecipeTrackerNavHost(
         modifier = modifier
     ){
         composable(route = Home.route) {
-            HomeScreen(
-
-            )
+            HomeScreen()
         }
+
         composable(route = AddRecipe.route) {
-            AddRecipeScreen(
-
-            )
+            AddRecipeScreen()
         }
+
         composable(route = Profile.route) {
             ProfileScreen()
         }

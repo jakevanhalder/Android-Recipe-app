@@ -19,8 +19,6 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 
 @Composable
-fun ProfileScreen(
-    onProfileClick: (String) -> Unit = {},
-) {
+fun ProfileScreen() {
 
 }
