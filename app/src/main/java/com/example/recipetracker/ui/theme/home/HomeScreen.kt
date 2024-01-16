@@ -21,31 +21,16 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.recipetracker.R
-import com.example.recipetracker.ui.theme.components.BottomBar
 import com.example.recipetracker.ui.theme.components.RecipeCard
 import com.example.recipetracker.ui.theme.components.TopBar
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(navController: NavHostController) {
-
-    Scaffold(
-        modifier = Modifier
-            .fillMaxSize(),
-        topBar = {
-            TopBar(value = "My Recipes")
-        },
-        bottomBar = {
-            NavigationBar {
-                BottomBar()
-            }
-        }
-    ) { values ->
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(values)
-        ){
+        ) {
             items(100) {
                 RecipeCard(
                     painter = painterResource(id = R.drawable.hamburger_steak_4),
@@ -55,7 +40,6 @@ fun HomeScreen(navController: NavHostController) {
                 )
             }
         }
-    }
 }
 
 @Preview

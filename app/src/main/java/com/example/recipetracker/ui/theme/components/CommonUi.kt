@@ -13,14 +13,22 @@ import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.recipetracker.AddRecipe
+import com.example.recipetracker.Home
+import com.example.recipetracker.Profile
+import com.example.recipetracker.R
 
 @Composable
 fun TopBar(value: String){
@@ -60,41 +68,49 @@ fun TopBarPreview(){
 }
 
 @Composable
-fun BottomBar(){
-    Row(
-        modifier = Modifier
-            .fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically
+fun RecipeTrackerBottomNavigation(modifier: Modifier = Modifier) {
+    NavigationBar(
+        containerColor = MaterialTheme.colorScheme.surfaceVariant,
+        modifier = modifier
     ) {
-        IconButton(onClick = { /*TODO*/ }) {
-            Icon(
-                imageVector = Icons.Default.Home,
-                contentDescription = "Home"
-            )
-        }
-
-        Spacer(modifier = Modifier.weight(0.5f))
-
-        IconButton(onClick = { /*TODO*/ }) {
-            Icon(
-                imageVector = Icons.Default.AddCircle,
-                contentDescription = "Add Recipe"
-            )
-        }
-
-        Spacer(modifier = Modifier.weight(0.5f))
-
-        IconButton(onClick = { /*TODO*/ }) {
-            Icon(
-                imageVector = Icons.Default.Person,
-                contentDescription = "Profile"
-            )
-        }
+        NavigationBarItem(
+            icon = {
+                Icon(
+                    imageVector = Home.icon,
+                    contentDescription = "Home"
+                )
+            },
+            label = {
+                Text("Home")
+            },
+            selected = true,
+            onClick = {}
+        )
+        NavigationBarItem(
+            icon = {
+                Icon(
+                    imageVector = AddRecipe.icon,
+                    contentDescription = "Add Recipe"
+                )
+            },
+            label = {
+                Text("Add Recipe")
+            },
+            selected = false,
+            onClick = {}
+        )
+        NavigationBarItem(
+            icon = {
+                Icon(
+                    imageVector = Profile.icon,
+                    contentDescription = "Profile"
+                )
+            },
+            label = {
+                Text("Profile")
+            },
+            selected = false,
+            onClick = {}
+        )
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun BottomBarPreview(){
-    BottomBar()
 }
