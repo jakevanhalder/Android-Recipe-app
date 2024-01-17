@@ -10,14 +10,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.recipetracker.ui.theme.RecipeTrackerTheme
-import com.example.recipetracker.ui.theme.addRecipe.AddRecipeScreen
 import com.example.recipetracker.ui.theme.components.RecipeTrackerBottomNavigation
-import com.example.recipetracker.ui.theme.home.HomeScreen
-import com.example.recipetracker.ui.theme.profile.ProfileScreen
+import com.example.recipetracker.ui.theme.components.RecipeTrackerTopNavigation
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +33,9 @@ fun RecipeApp()
 {
     val navController = rememberNavController()
     Scaffold(
+        topBar = {
+            RecipeTrackerTopNavigation(value = "My Recipes")
+        },
         bottomBar = {
             RecipeTrackerBottomNavigation()
         }

@@ -4,15 +4,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.recipetracker.R
 import com.example.recipetracker.ui.theme.components.RecipeCard
-import com.example.recipetracker.ui.theme.components.TopBar
 
 @Composable
 fun HomeScreen(navController: NavHostController) {

@@ -11,12 +11,15 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.materialIcon
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -30,42 +33,6 @@ import com.example.recipetracker.Home
 import com.example.recipetracker.Profile
 import com.example.recipetracker.R
 
-@Composable
-fun TopBar(value: String){
-    Row(
-        modifier = Modifier
-            .fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        IconButton(onClick = { /*TODO*/ }) {
-            Icon(
-                imageVector = Icons.Default.Menu,
-                contentDescription = "Menu"
-            )
-        }
-
-        Text(
-            text = value,
-            color = Color.Black,
-            fontSize = 20.sp
-        )
-
-        Spacer(modifier = Modifier.weight(1f))
-
-        IconButton(onClick = { /*TODO*/ }) {
-            Icon(
-                imageVector = Icons.Default.Search,
-                contentDescription = "Search"
-            )
-        }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun TopBarPreview(){
-    TopBar("My Recipes")
-}
 
 @Composable
 fun RecipeTrackerBottomNavigation(modifier: Modifier = Modifier) {
