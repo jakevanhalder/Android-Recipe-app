@@ -39,7 +39,7 @@ fun RecipeApp()
             RecipeTrackerTopAppBar(value = "My Recipes")
         },
         bottomBar = {
-            RecipeTrackerBottomNavigation()
+            RecipeTrackerBottomNavigation(navController)
         }
     ) { padding ->
         RecipeTrackerNavHost(navController, Modifier.padding(padding))

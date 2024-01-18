@@ -14,6 +14,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import com.example.recipetracker.AddRecipe
 import com.example.recipetracker.Home
 import com.example.recipetracker.Profile
@@ -52,7 +54,7 @@ fun RecipeTrackerTopAppBar(modifier: Modifier = Modifier, value: String){
 
 
 @Composable
-fun RecipeTrackerBottomNavigation(modifier: Modifier = Modifier) {
+fun RecipeTrackerBottomNavigation(navController: NavHostController,modifier: Modifier = Modifier) {
     NavigationBar(
         containerColor = MaterialTheme.colorScheme.surfaceVariant,
         modifier = modifier
@@ -68,7 +70,9 @@ fun RecipeTrackerBottomNavigation(modifier: Modifier = Modifier) {
                 Text("Home")
             },
             selected = true,
-            onClick = {}
+            onClick = {
+                navController.navigate(Home.route)
+            }
         )
         NavigationBarItem(
             icon = {
@@ -81,7 +85,9 @@ fun RecipeTrackerBottomNavigation(modifier: Modifier = Modifier) {
                 Text("Add Recipe")
             },
             selected = false,
-            onClick = {}
+            onClick = {
+                navController.navigate(AddRecipe.route)
+            }
         )
         NavigationBarItem(
             icon = {
@@ -94,7 +100,9 @@ fun RecipeTrackerBottomNavigation(modifier: Modifier = Modifier) {
                 Text("Profile")
             },
             selected = false,
-            onClick = {}
+            onClick = {
+                navController.navigate(Profile.route)
+            }
         )
     }
 }
