@@ -21,7 +21,7 @@ import com.example.recipetracker.ui.theme.components.UserTextField
 fun AddRecipeScreen(navController: NavHostController) {
     Scaffold(
         topBar = {
-            AddRecipeTopAppBar(value = "New Recipe")
+            AddRecipeTopAppBar()
         }
     ) { paddingValues ->
         Column(
@@ -31,11 +31,11 @@ fun AddRecipeScreen(navController: NavHostController) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ){
-            UserTextField("Recipe Name")
+            UserTextField("Recipe Name", Modifier)
 
-            UserTextField("Preparation Time")
+            UserTextField("Preparation Time", Modifier)
 
-            UserTextField("Cooking Time")
+            UserTextField("Cooking Time", Modifier)
         }
     }
 }
